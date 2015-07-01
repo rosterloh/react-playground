@@ -1,0 +1,33 @@
+{
+  "name": "react-playground",
+  "version": "1.0.0",
+  "description": "Testing out React.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosterloh/react-playground.git"
+  },
+  "author": "Richard Osterloh <richard.osterloh@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rosterloh/react-playground/issues"
+  },
+  "homepage": "https://github.com/rosterloh/react-playground#readme",
+  "dependencies": {
+    "axios": "^0.5.4",
+    "firebase": "^2.2.7",
+    "re-base": "0.0.11",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "reactfire": "^0.4.0"
+  },
+  "devDependencies": {
+    "babel-core": "^5.6.15",
+    "babel-loader": "^5.2.2",
+    "node-libs-browser": "^0.5.2",
+    "webpack": "^1.10.0"
+  }
+}

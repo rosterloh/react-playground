@@ -1,0 +1,11 @@
+{
+  "quotmark"      : "single",
+  "esnext"        : true,
+  "globals": {
+    "console": false,
+    "window": false,
+    "require": false,
+    "module": false,
+    "exports": false
+  }
+}
