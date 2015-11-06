@@ -1,9 +1,10 @@
-import React from 'react';
-import Repos from './Github/Repos';
-import UserProfile from './Github/UserProfile';
-import Notes from './Notes/Notes';
-import helpers from '../utils/helpers';
-import Rebase from 're-base';
+var React = require('react');
+var Router = require('react-router');
+var Repos = require('./Github/Repos');
+var UserProfile = require('./Github/UserProfile');
+var Notes = require('./Notes/Notes');
+var helpers = require('../utils/helpers');
+var Rebase = require('re-base');
 
 var base = Rebase.createClass('https://ro-react-playground.firebaseio.com/');
 
