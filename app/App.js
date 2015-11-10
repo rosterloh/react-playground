@@ -6,4 +6,4 @@ var routes = require('./config/routes');
 render(
   <Router>{routes}</Router>,
   document.getElementById('app')
-  );
+);

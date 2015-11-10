@@ -3,43 +3,26 @@ var Router = require('react-router');
 var Repos = require('./Github/Repos');
 var UserProfile = require('./Github/UserProfile');
 var Notes = require('./Notes/Notes');
-var helpers = require('../utils/helpers');
-var Rebase = require('re-base');
+var ReactFireMixin = require('reactfire');
+var Firebase = require('firebase');
 
-var base = Rebase.createClass('https://ro-react-playground.firebaseio.com/');
-
-class Profile extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
+var Profile = React.createClass({
+  mixins: [Router.State, ReactFireMixin],
+  getInitialState: function(){
+    return {
       notes: [],
-      bio: {},
-      repos: []
-    };
-  }
-  init(){
-    const {username} = this.props.params;
-    this.ref = base.bindToState(username, {
-      context: this,
-      asArray: true,
-      state: 'notes'
-    });
-
-    helpers.getGithubInfo(username)
-      .then((dataObj) => {
-        this.setState({
-          bio: dataObj.bio,
-          repos: dataObj.repos
-        });
-      });
-  }
-
+      bio: {name: 'Tyler'},
+      repos: [1,2,3]
+    }
+  },
   componentDidMount(){
-    this.init();
-  }
+    this.ref = new Firebase('https://ro-react-playground.firebaseio.com/');
+    var childRef = this.ref.child(this.props.params.username);
+    this.bindAsArray(childRef, 'notes');
+  },
   componentWillUnmount(){
-    base.removeBinding(this.ref);
-  }
+    this.unbind('notes');
+  },/*
   componentWillReceiveProps(){
     base.removeBinding(this.ref);
     this.init();
@@ -49,9 +32,9 @@ class Profile extends React.Component{
     base.post(username, {
       data: this.state.notes.concat([newNote])
     });
-  }
-  render(){
-    const {username} = this.props.params;
+  }*/
+  render: function(){
+    var username = this.props.params.username;
     return (
       <div className="row">
         <div className="col-md-4">
@@ -61,14 +44,11 @@ class Profile extends React.Component{
           <Repos username={username} repos={this.state.repos} />
         </div>
         <div className="col-md-4">
-          <Notes
-            username={username}
-            notes={this.state.notes}
-            addNote={this.handleAddNote.bind(this)} />
+          <Notes username={username} notes={this.state.notes} />
         </div>
       </div>
     )
   }
-};
+});
 
-export default Profile;
+module.exports = Profile;
