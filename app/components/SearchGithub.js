@@ -1,12 +1,14 @@
-import React from 'react';
+var React = require('react');
+var History = require('react-router').History;
 
-class SearchGithub extends React.Component{
-  handleSubmit(){
-    const {history} = this.props;
-    const username = this.refs.username.value;
-    history.pushState(null, `profile/${username}`)
-  }
-  render(){
+var SearchGithub = React.createClass({
+  mixins: [History],
+  handleSubmit: function(){
+    var username = this.refs.username.value;
+    this.refs.username.value = '';
+    this.history.pushState(null , "profile/" + username);
+  },
+  render: function(){
     return (
       <div className="col-sm-12">
         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -20,6 +22,6 @@ class SearchGithub extends React.Component{
       </div>
     )
   }
-};
+});
 
-export default SearchGithub;
+module.exports = SearchGithub;

@@ -1,7 +1,11 @@
-import React from 'react';
+var React = require('react');
 
-class Repos extends React.Component{
-  render(){
+var Repos = React.createClass({
+  propTypes: {
+    username: React.PropTypes.string.isRequired,
+    repos: React.PropTypes.array.isRequired
+  },
+  render: function(){
     var repos = this.props.repos.map((repo, index) => {
       return (
         <li className="list-group-item" key={index}>
@@ -19,11 +23,6 @@ class Repos extends React.Component{
       </div>
     )
   }
-};
-
-Repos.propTypes = {
-  username: React.PropTypes.string.isRequired,
-  repos: React.PropTypes.array.isRequired
-};
+});
 
 module.exports = Repos;

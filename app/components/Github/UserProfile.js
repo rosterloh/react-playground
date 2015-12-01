@@ -1,11 +1,15 @@
-import React from 'react';
+var React = require('react');
 
-class UserProfiles extends React.Component{
-  render(){
+var UserProfiles = React.createClass({
+  propTypes: {
+    username: React.PropTypes.string.isRequired,
+    bio: React.PropTypes.object.isRequired
+  },
+  render: function(){
     const {bio} = this.props;
     const fieldNames = ['name', 'login', 'email', 'location', 'company', 'followers', 'following', 'public_repos', 'blog'];
     const fields = fieldNames.map((field, index) => {
-      return bio[field] && <li key={index} className="list-group-item">Name: {bio[field]}</li>
+      return bio[field] && <li key={index} className="list-group-item">{field}: {bio[field]}</li>
     });
 
     return (
@@ -18,11 +22,6 @@ class UserProfiles extends React.Component{
       </div>
     )
   }
-};
+});
 
-UserProfiles.propTypes = {
-  username: React.PropTypes.string.isRequired,
-  bio: React.PropTypes.object.isRequired
-}
-
-export default UserProfiles;
+module.exports = UserProfiles;

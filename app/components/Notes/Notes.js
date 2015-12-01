@@ -3,6 +3,11 @@ var NotesList = require('./NotesList');
 var AddNote = require('./AddNote');
 
 var Notes = React.createClass({
+  propTypes: {
+    username: React.PropTypes.string.isRequired,
+    notes: React.PropTypes.array.isRequired,
+    addNote: React.PropTypes.func.isRequired
+  },
   render: function(){
     return (
       <div>
@@ -13,11 +18,5 @@ var Notes = React.createClass({
     )
   }
 });
-
-Notes.propTypes = {
-  username: React.PropTypes.string.isRequired,
-  notes: React.PropTypes.array.isRequired,
-  addNote: React.PropTypes.func.isRequired
-};
 
 module.exports = Notes;
