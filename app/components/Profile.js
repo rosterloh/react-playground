@@ -1,11 +1,11 @@
 var React = require('react');
 var Router = require('react-router');
-var Repos = require('./Github/Repos');
-var UserProfile = require('./Github/UserProfile');
-var Notes = require('./Notes/Notes');
+var Repos = require('./Github/Repos').default;
+var UserProfile = require('./Github/UserProfile').default;
+var Notes = require('./Notes/Notes').default;
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
-var helpers = require('../utils/helpers');
+var helpers = require('../utils/helpers').default;
 var _ = require('lodash');
 
 var Profile = React.createClass({

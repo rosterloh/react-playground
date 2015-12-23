@@ -1,18 +1,14 @@
-var React = require('react');
+import React from 'react';
 
-var UserProfiles = React.createClass({
-  propTypes: {
-    username: React.PropTypes.string.isRequired,
-    bio: React.PropTypes.object.isRequired
-  },
-  render: function(){
+class UserProfiles extends React.Component{
+  render(){
     const {bio} = this.props;
     const fieldNames = ['name', 'login', 'email', 'location', 'company', 'followers', 'following', 'public_repos', 'blog'];
     const fields = fieldNames.map((field, index) => {
       return bio[field] && <li key={index} className="list-group-item">{field}: {bio[field]}</li>
     });
 
-    return (
+    return(
       <div>
         <h3> User Profile </h3>
         <ul className="list-group">
@@ -22,6 +18,11 @@ var UserProfiles = React.createClass({
       </div>
     )
   }
-});
+};
 
-module.exports = UserProfiles;
+ UserProfiles.propTypes = {
+   username: React.PropTypes.string.isRequired,
+   bio: React.PropTypes.object.isRequired
+ }
+
+export default UserProfiles;
